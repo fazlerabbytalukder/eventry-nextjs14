@@ -1,7 +1,15 @@
-import HomePage from "./components/HomePage";
+import Loading from "@/components/Loading";
+import EventList from "@/components/landing/EventList";
+import Header from "@/components/landing/Header";
+import { Suspense } from "react";
 
-export default function Home() {
+export default function Home({ searchParams: { query } }) {
   return (
-    <HomePage />
+    <section className="container">
+      <Header />
+      <Suspense key={query} fallback={<Loading />}>
+        <EventList query={query} />
+      </Suspense>
+    </section>
   );
 }
